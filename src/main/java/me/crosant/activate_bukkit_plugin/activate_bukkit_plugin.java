@@ -5,17 +5,18 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-
+import ru.tehkode.permissions.commands.CommandsManager;
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
 
-    
+    protected CommandsManager commandsManager;
 	protected FileConfiguration config;
 	Logger log = Logger.getLogger("Minecraft");
 	
@@ -81,7 +82,16 @@ public class activate_bukkit_plugin extends JavaPlugin
              else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))){
                  
                  player.sendMessage("You have been Activated");
-                 
+                 //ru.tehkode.permissions.bukkit.PermissionsEx.commandsManager.execute(sender, command, args);
+                 String[] args1 = new String[5];
+                 args1[0] = "user";
+                 args1[1] = sender.toString();
+                 args1[2] = "group";
+                 args1[3] = "set";
+                 args1[4] = this.getConfig().getString("Basic.Group");
+                 String com1 = "pex";
+                 //Command command = (Command)com1;
+                //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
              }
              
              else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
