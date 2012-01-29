@@ -112,7 +112,8 @@ public class activate_bukkit_plugin extends JavaPlugin
 }
     	return false;
     }
-    }
+    return false;  }
+  
 
 
     
