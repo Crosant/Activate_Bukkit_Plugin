@@ -11,6 +11,10 @@
       <id>bukkit-repo</id>
       <url>http://repo.bukkit.org/content/groups/public/</url>
     </repository>
+    <repository>
+      <id>perm-repo</id>
+      <url>http://repo.tehkode.ru/repository/repo/</url>
+    </repository>
   </repositories>
   <build>
       <plugins>
@@ -32,6 +36,11 @@
         <version>1.1-R1</version>
         <type>jar</type>
         <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>ru.tehkode</groupId>
+        <artifactId>PermissionsEx</artifactId>
+        <version>1.18</version>
     </dependency>
   </dependencies>
 </project>
