@@ -24,7 +24,7 @@ public class activate_bukkit_plugin extends JavaPlugin
 	
 	
 	public void onDisable() {
-		log.info("Activate V0.1 has been disabled.");
+		log.info("Activate v0.1 has been disabled.");
 	}
 
 	public void onEnable() {
@@ -38,18 +38,18 @@ public class activate_bukkit_plugin extends JavaPlugin
     	this.getConfig().set("Basic.string", "1234567890");
 
         //this.getConfig().set("Basic.Permission", "yes");
-        this.getConfig().set("Activate.Group", "not supported jet");
+        this.getConfig().set("Activate.Group", "not supported yet");
         this.getConfig().set("Activate.Perm", "player.player");
         this.getConfig().set("Activate.World", "*");
         this.getConfig().set("Activate.Prefix", "Activated");
-    	this.getConfig().set("Messages.nopermission", "you don't have permissions");
+    	this.getConfig().set("Messages.nopermission", "You don't have the required permissions to do this.");
     	
     	
     	
     	this.saveConfig();
     	
     	
-    	log.info("Activate V0.1 has been enabled.");
+    	log.info("Activate v0.1 has been enabled.");
     	
     	
     	
@@ -63,7 +63,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     		player = (Player) sender;
     	}
      if (player == null) {
-    		sender.sendMessage("this command can only be run by a player");
+    		sender.sendMessage("This command can only be run by a player.");
     		} else {
          if(Bukkit.getServer().getPluginManager().isPluginEnabled("PermissionsEx")){
              PermissionManager manager = PermissionsEx.getPermissionManager();
@@ -99,7 +99,7 @@ public class activate_bukkit_plugin extends JavaPlugin
              }
              else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))&& permissions.has(player, "Activate_Bukkit_Plugin.activate")){
                  
-                 player.sendMessage("You have been Activated");
+                 player.sendMessage("You have been activated!");
                  //ru.tehkode.permissions.bukkit.PermissionsEx.commandsManager.execute(sender, command, args);
                  String[] args1 = new String[5];
                  args1[0] = "user";
@@ -122,7 +122,7 @@ public class activate_bukkit_plugin extends JavaPlugin
              else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
                  
                  this.reloadConfig();
-                 player.sendMessage("Activate Reloaded");
+                 player.sendMessage("Activate reloaded");
                  
                  
              }
@@ -131,13 +131,13 @@ public class activate_bukkit_plugin extends JavaPlugin
                    
     		}
             else {
-                player.sendMessage("To few Args");
+                player.sendMessage("Check your syntax.");
             return false;
             }
                 
             }
                         else {
-                player.sendMessage("To few Args");
+                player.sendMessage("Check your syntax.");
             return false;
             }
          }
@@ -149,7 +149,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     		return true;
     	}
          else {
-   Logger.getLogger("Minecraft").warning("PermissionsEx plugin are not found.");
+   Logger.getLogger("Minecraft").warning("PermissionsEx plugin couldn't be found.");
 }
     	return false;
     }
