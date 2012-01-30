@@ -17,7 +17,6 @@ import ru.tehkode.permissions.PermissionUser;
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
-    protected CommandsManager commandsManager;
 	protected FileConfiguration config;
 	public static final Logger log = Logger.getLogger("Minecraft");
 
