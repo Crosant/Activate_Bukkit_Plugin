@@ -73,7 +73,7 @@ public class activate_bukkit_plugin extends JavaPlugin
              
     PermissionManager permissions = PermissionsEx.getPermissionManager();
          if (cmd.getName().equalsIgnoreCase("activate")) {
-            if (args.length > 0) {
+            
                 if (args.length > 1){
              if (args[0].equalsIgnoreCase("refresh") && permissions.has(player, "Activate_Bukkit_Plugin.refresh")){
                  
@@ -94,10 +94,27 @@ public class activate_bukkit_plugin extends JavaPlugin
               
                  
                  this.getConfig().set("Basic.string", args[1]);
-                 player.sendMessage("Setted");
+                 player.sendMessage("New String set");
                  this.saveConfig();
              }
-             else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))&& permissions.has(player, "Activate_Bukkit_Plugin.activate")){
+             
+             
+
+           
+             
+                   
+    		}
+                else if (args.length > 0){
+                    if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
+                 
+                 this.reloadConfig();
+                 player.sendMessage("Activate reloaded");
+                 
+                 
+             }
+                    
+                    
+                    else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))&& permissions.has(player, "Activate_Bukkit_Plugin.activate")){
                  
                  player.sendMessage("You have been Activated");
                  //ru.tehkode.permissions.bukkit.PermissionsEx.commandsManager.execute(sender, command, args);
@@ -120,28 +137,14 @@ public class activate_bukkit_plugin extends JavaPlugin
                 // permu.setGroups(perm1, this.getConfig().getString("Activate.World"));
              manager.getUser(player).setGroups(groups);   //addGroup(this.getConfig().getString("Activate.Group"));
              }
-             
-
-           else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
-                 
-                 this.reloadConfig();
-                 player.sendMessage("Activate Reloaded");
-                 
-                 
-             }
-             
-                   
-    		}
+                    
+                }
             else {
                 player.sendMessage("Check your syntax.");
             return false;
             }
                 
-            }
-                        else {
-                player.sendMessage("Check your syntax.");
-            return false;
-            }
+            
          }
          else {
          return false;
