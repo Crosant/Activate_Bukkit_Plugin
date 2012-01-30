@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import ru.tehkode.permissions.commands.CommandsManager;
+import ru.tehkode.permissions.PermissionEntity;
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
@@ -56,6 +57,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	Player player = null;
+
     	if (sender instanceof Player) {
     		player = (Player) sender;
     	}
@@ -63,6 +65,9 @@ public class activate_bukkit_plugin extends JavaPlugin
     		sender.sendMessage("this command can only be run by a player");
     		} else {
          if(Bukkit.getServer().getPluginManager().isPluginEnabled("PermissionsEx")){
+        PermissionManager pex = PermissionsEx.getPermissionManager();
+        PermissionEntity entity = pex.getUser(player);
+             
     PermissionManager permissions = PermissionsEx.getPermissionManager();
          if (cmd.getName().equalsIgnoreCase("activate")) {
             if (args.length > 1) {
@@ -90,6 +95,9 @@ public class activate_bukkit_plugin extends JavaPlugin
                  args1[3] = "set";
                  args1[4] = this.getConfig().getString("Basic.Group");
                  String com1 = "pex";
+                 entity.addPermission("");
+                 entity.setPrefix("2", "2");
+                 //getPluginCommand("pex")  //.execute(CommandSender, "pex", String[] args);
                  //Command command = (Command)com1;
                 //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
              }
