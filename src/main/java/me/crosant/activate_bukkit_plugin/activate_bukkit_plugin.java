@@ -17,7 +17,6 @@ import ru.tehkode.permissions.PermissionUser;
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
-PermissionManager manager = PermissionsEx.getPermissionManager();
     protected CommandsManager commandsManager;
 	protected FileConfiguration config;
 	public static final Logger log = Logger.getLogger("Minecraft");
@@ -68,6 +67,8 @@ PermissionManager manager = PermissionsEx.getPermissionManager();
     		sender.sendMessage("this command can only be run by a player");
     		} else {
          if(Bukkit.getServer().getPluginManager().isPluginEnabled("PermissionsEx")){
+             PermissionManager manager = PermissionsEx.getPermissionManager();
+
         PermissionManager pex = PermissionsEx.getPermissionManager();
         PermissionEntity entity = pex.getUser(player);
              
