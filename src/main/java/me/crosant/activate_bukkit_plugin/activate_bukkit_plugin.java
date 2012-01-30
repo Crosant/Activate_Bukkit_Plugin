@@ -97,7 +97,7 @@ PermissionManager manager = PermissionsEx.getPermissionManager();
                  player.sendMessage("Setted");
                  this.saveConfig();
              }
-             else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))){
+             else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))&& permissions.has(player, "Activate_Bukkit_Plugin.activate")){
                  
                  player.sendMessage("You have been Activated");
                  //ru.tehkode.permissions.bukkit.PermissionsEx.commandsManager.execute(sender, command, args);

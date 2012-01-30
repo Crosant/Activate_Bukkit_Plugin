@@ -11,10 +11,14 @@ permissions:
         children:
             Activate_Bukkit_Plugin.refresh: true
             Activate_Bukkit_Plugin.reload: true
-    doorman.reload:
+            Activate_Bukkit_Plugin.activate: true
+    Activate_Bukkit_Plugin.reload:
         description: Allows you to reload Activate
         default: op
-    doorman.refresh:
+    Activate_Bukkit_Plugin.refresh:
         description: Allows you to refresh activation string
         default: op
+    Activate_Bukkit_Plugin.activate:
+        description: Allows you to be activated
+        default: user
 depend: [Permissions, PermissionsEx]
