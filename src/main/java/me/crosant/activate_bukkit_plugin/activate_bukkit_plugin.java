@@ -20,7 +20,7 @@ public class activate_bukkit_plugin extends JavaPlugin
 PermissionManager manager = PermissionsEx.getPermissionManager();
     protected CommandsManager commandsManager;
 	protected FileConfiguration config;
-	Logger log = Logger.getLogger("Minecraft");
+	public static final Logger log = Logger.getLogger("Minecraft");
 
 				
 	
