@@ -12,14 +12,15 @@ import ru.tehkode.permissions.PermissionEntity;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import ru.tehkode.permissions.commands.CommandsManager;
+import ru.tehkode.permissions.PermissionUser;
+
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
-
+PermissionManager manager = PermissionsEx.getPermissionManager();
     protected CommandsManager commandsManager;
 	protected FileConfiguration config;
 	Logger log = Logger.getLogger("Minecraft");
-	
 
 				
 	
@@ -73,7 +74,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     PermissionManager permissions = PermissionsEx.getPermissionManager();
          if (cmd.getName().equalsIgnoreCase("activate")) {
             if (args.length > 0) {
-                if (args.length > 0){
+                if (args.length > 1){
              if (args[0].equalsIgnoreCase("refresh") && permissions.has(player, "Activate_Bukkit_Plugin.refresh")){
                  
                  
@@ -87,6 +88,15 @@ public class activate_bukkit_plugin extends JavaPlugin
                  player.sendMessage(randomString);
                  this.saveConfig();
              }
+            else if (args[0].equalsIgnoreCase("set") && permissions.has(player, "Activate_Bukkit_Plugin.refresh")){
+                 
+                 
+              
+                 
+                 this.getConfig().set("Basic.string", args[1]);
+                 player.sendMessage("Setted");
+                 this.saveConfig();
+             }
              else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))){
                  
                  player.sendMessage("You have been Activated");
@@ -98,11 +108,15 @@ public class activate_bukkit_plugin extends JavaPlugin
                  args1[3] = "set";
                  args1[4] = this.getConfig().getString("Activate.Group");
                  //String com1 = "pex";
-                 entity.addPermission(this.getConfig().getString("Activate.Perm"));
-                 entity.setPrefix(this.getConfig().getString("Activate.Prefix"), this.getConfig().getString("Activate.World"));
+                // entity.addPermission(this.getConfig().getString("Activate.Perm"));
+                // entity.setPrefix(this.getConfig().getString("Activate.Prefix"), this.getConfig().getString("Activate.World"));
                  //getPluginCommand("pex")  //.execute(CommandSender, "pex", String[] args);
                  //Command command = (Command)com1;
                 //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
+               //  String perm1[] = new String[1];
+               //  perm1[0] = this.getConfig().getString("Activate.Group");
+                // permu.setGroups(perm1, this.getConfig().getString("Activate.World"));
+             manager.getUser(player).addGroup(this.getConfig().getString("Activate.Group"));
              }
              
              else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
