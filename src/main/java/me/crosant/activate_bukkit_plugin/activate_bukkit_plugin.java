@@ -38,10 +38,10 @@ public class activate_bukkit_plugin extends JavaPlugin
     	this.getConfig().set("Basic.string", "1234567890");
 
         //this.getConfig().set("Basic.Permission", "yes");
-        this.getConfig().set("Activate.Group", "not supported jet");
-        this.getConfig().set("Activate.Perm", "player.player");
-        this.getConfig().set("Activate.World", "*");
-        this.getConfig().set("Activate.Prefix", "Activated");
+        this.getConfig().set("Activate.Group", "player");
+       // this.getConfig().set("Activate.Perm", "player.player");
+      //  this.getConfig().set("Activate.World", "*");
+      //  this.getConfig().set("Activate.Prefix", "Activated");
     	this.getConfig().set("Messages.nopermission", "you don't have permissions");
     	
     	
@@ -115,18 +115,20 @@ public class activate_bukkit_plugin extends JavaPlugin
                 //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
                //  String perm1[] = new String[1];
                //  perm1[0] = this.getConfig().getString("Activate.Group");
+                 String[] groups = new String[1];
+                 groups[0] = this.getConfig().getString("Activate.Group");
                 // permu.setGroups(perm1, this.getConfig().getString("Activate.World"));
-             manager.getUser(player).addGroup(this.getConfig().getString("Activate.Group"));
+             manager.getUser(player).setGroups(groups);   //addGroup(this.getConfig().getString("Activate.Group"));
              }
              
-             else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
+
+           else if(args[0].equalsIgnoreCase("reload") && permissions.has(player, "Activate_Bukkit_Plugin.reload")){
                  
                  this.reloadConfig();
                  player.sendMessage("Activate Reloaded");
                  
                  
              }
-             
              
                    
     		}
