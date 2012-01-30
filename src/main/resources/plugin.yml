@@ -17,3 +17,4 @@ permissions:
     doorman.refresh:
         description: Allows you to refresh activation string
         default: op
+depend: [Permissions, PermissionsEx]
