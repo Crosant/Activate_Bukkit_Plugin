@@ -72,7 +72,8 @@ public class activate_bukkit_plugin extends JavaPlugin
              
     PermissionManager permissions = PermissionsEx.getPermissionManager();
          if (cmd.getName().equalsIgnoreCase("activate")) {
-            if (args.length > 1) {
+            if (args.length > 0) {
+                if (args.length > 0){
              if (args[0].equalsIgnoreCase("refresh") && permissions.has(player, "Activate_Bukkit_Plugin.refresh")){
                  
                  
@@ -116,6 +117,12 @@ public class activate_bukkit_plugin extends JavaPlugin
                    
     		}
             else {
+                player.sendMessage("To few Args");
+            return false;
+            }
+                
+            }
+                        else {
                 player.sendMessage("To few Args");
             return false;
             }
