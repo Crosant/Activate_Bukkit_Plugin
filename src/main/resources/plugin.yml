@@ -20,5 +20,5 @@ permissions:
         default: op
     Activate_Bukkit_Plugin.activate:
         description: Allows you to be activated
-        default: true
+        default: false
 depend: [PermissionsEx]

@@ -42,7 +42,7 @@ public class activate_bukkit_plugin extends JavaPlugin
        // this.getConfig().set("Activate.Perm", "player.player");
       //  this.getConfig().set("Activate.World", "*");
       //  this.getConfig().set("Activate.Prefix", "Activated");
-    	this.getConfig().set("Messages.nopermission", "you don't have permissions");
+    	this.getConfig().set("Messages.nopermission", "You don't have the required permissions to do this.");
     	
     	
     	
@@ -133,13 +133,13 @@ public class activate_bukkit_plugin extends JavaPlugin
                    
     		}
             else {
-                player.sendMessage("To few Args");
+                player.sendMessage("Check your syntax.");
             return false;
             }
                 
             }
                         else {
-                player.sendMessage("To few Args");
+                player.sendMessage("Check your syntax.");
             return false;
             }
          }
