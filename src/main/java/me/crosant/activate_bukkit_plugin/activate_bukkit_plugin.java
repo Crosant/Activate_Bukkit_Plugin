@@ -39,7 +39,10 @@ public class activate_bukkit_plugin extends JavaPlugin
     	this.getConfig().set("Basic.string", "1234567890");
 
         //this.getConfig().set("Basic.Permission", "yes");
-        this.getConfig().set("Basic.Group", "Player");
+        this.getConfig().set("Activate.Group", "not supported jet");
+        this.getConfig().set("Activate.Perm", "player.player");
+        this.getConfig().set("Activate.World", "*");
+        this.getConfig().set("Activate.Prefix", "Activated");
     	this.getConfig().set("Messages.nopermission", "you don't have permissions");
     	
     	
@@ -92,10 +95,10 @@ public class activate_bukkit_plugin extends JavaPlugin
                  args1[1] = sender.toString();
                  args1[2] = "group";
                  args1[3] = "set";
-                 args1[4] = this.getConfig().getString("Basic.Group");
+                 args1[4] = this.getConfig().getString("Activate.Group");
                  //String com1 = "pex";
-                 entity.addPermission("");
-                 entity.setPrefix("2", "2");
+                 entity.addPermission(this.getConfig().getString("Activate.Perm"));
+                 entity.setPrefix(this.getConfig().getString("Activate.Prefix"), this.getConfig().getString("Activate.World"));
                  //getPluginCommand("pex")  //.execute(CommandSender, "pex", String[] args);
                  //Command command = (Command)com1;
                 //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
