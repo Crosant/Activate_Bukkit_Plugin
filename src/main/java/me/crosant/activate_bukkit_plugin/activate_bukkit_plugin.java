@@ -5,14 +5,13 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.tehkode.permissions.PermissionEntity;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import ru.tehkode.permissions.commands.CommandsManager;
-import ru.tehkode.permissions.PermissionEntity;
 
 public class activate_bukkit_plugin extends JavaPlugin
 {
@@ -94,7 +93,7 @@ public class activate_bukkit_plugin extends JavaPlugin
                  args1[2] = "group";
                  args1[3] = "set";
                  args1[4] = this.getConfig().getString("Basic.Group");
-                 String com1 = "pex";
+                 //String com1 = "pex";
                  entity.addPermission("");
                  entity.setPrefix("2", "2");
                  //getPluginCommand("pex")  //.execute(CommandSender, "pex", String[] args);
