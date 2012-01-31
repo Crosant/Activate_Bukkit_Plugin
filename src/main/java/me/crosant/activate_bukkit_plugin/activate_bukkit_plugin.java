@@ -108,7 +108,7 @@ public class activate_bukkit_plugin extends JavaPlugin
              manager.getUser(args[1]).setGroups(groups);
              String user1 = args[1];
              user = org.bukkit.Bukkit.getPlayer(user1);
-             user.sendMessage(this.getConfig().getString("Messages.activation"));
+             player.sendMessage(this.getConfig().getString(user + "has been activated"));
              }
              
           /*  else{
