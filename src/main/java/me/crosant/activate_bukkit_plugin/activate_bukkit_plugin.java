@@ -43,7 +43,8 @@ public class activate_bukkit_plugin extends JavaPlugin
       //  this.getConfig().set("Activate.World", "*");
       //  this.getConfig().set("Activate.Prefix", "Activated");
     	this.getConfig().set("Messages.nopermission", "You don't have the required permissions to do this.");
-    	
+    	this.getConfig().set("Messages.activation", "You have been Activated");
+    	this.getConfig().set("Messages.wrong", "Wrong Word");
     	
     	
     	this.saveConfig();
@@ -58,6 +59,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	Player player = null;
+        Player user = null;
 
     	if (sender instanceof Player) {
     		player = (Player) sender;
@@ -98,6 +100,23 @@ public class activate_bukkit_plugin extends JavaPlugin
                  this.saveConfig();
              }
              
+             else if (args[0].equalsIgnoreCase("player") && permissions.has(player, "Activate_Bukkit_Plugin.activate.manual")){
+                 
+                 
+                    String[] groups = new String[1];
+                 groups[0] = this.getConfig().getString("Activate.Group");
+             manager.getUser(args[1]).setGroups(groups);
+             String user1 = args[1];
+             user = org.bukkit.Bukkit.getPlayer(user1);
+             user.sendMessage(this.getConfig().getString("Messages.activation"));
+             }
+             
+          /*  else{
+               
+                player.sendMessage(this.getConfig().getString("Messages.wrong"));
+                
+            }*/
+             
              
 
            
@@ -116,27 +135,18 @@ public class activate_bukkit_plugin extends JavaPlugin
                     
                     else if(args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string"))&& permissions.has(player, "Activate_Bukkit_Plugin.activate")){
                  
-                 player.sendMessage("You have been Activated");
-                 //ru.tehkode.permissions.bukkit.PermissionsEx.commandsManager.execute(sender, command, args);
-                 String[] args1 = new String[5];
-                 args1[0] = "user";
-                 args1[1] = sender.toString();
-                 args1[2] = "group";
-                 args1[3] = "set";
-                 args1[4] = this.getConfig().getString("Activate.Group");
-                 //String com1 = "pex";
-                // entity.addPermission(this.getConfig().getString("Activate.Perm"));
-                // entity.setPrefix(this.getConfig().getString("Activate.Prefix"), this.getConfig().getString("Activate.World"));
-                 //getPluginCommand("pex")  //.execute(CommandSender, "pex", String[] args);
-                 //Command command = (Command)com1;
-                //return this.commandsManager.execute(sender, command, args1); // /pex user <user> group set user
-               //  String perm1[] = new String[1];
-               //  perm1[0] = this.getConfig().getString("Activate.Group");
+                 
+
                  String[] groups = new String[1];
                  groups[0] = this.getConfig().getString("Activate.Group");
-                // permu.setGroups(perm1, this.getConfig().getString("Activate.World"));
-             manager.getUser(player).setGroups(groups);   //addGroup(this.getConfig().getString("Activate.Group"));
+             manager.getUser(player).setGroups(groups);  
+             player.sendMessage(this.getConfig().getString("Messages.activation"));
              }
+                    else {
+                        
+                        player.sendMessage(this.getConfig().getString("Messages.wrong"));
+                        
+                    }
                     
                 }
             else {
