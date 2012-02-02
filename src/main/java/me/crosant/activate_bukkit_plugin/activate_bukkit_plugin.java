@@ -1,5 +1,6 @@
 package me.crosant.activate_bukkit_plugin;
 
+import java.io.File;
 import java.util.Random;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
@@ -28,13 +29,14 @@ public class activate_bukkit_plugin extends JavaPlugin
 	}
 
 	public void onEnable() {
-		
+	boolean exists = (new File("plugins/Activate_Bukkit_Plugin/config.yml")).exists();	
 
 			
 		
     	config = getConfig();
-    	
-    	this.getConfig().set("Basic.activated", true);
+        if (exists){}
+        else{
+        this.getConfig().set("Basic.activated", true);
     	this.getConfig().set("Basic.string", "1234567890");
 
         //this.getConfig().set("Basic.Permission", "yes");
@@ -48,7 +50,7 @@ public class activate_bukkit_plugin extends JavaPlugin
     	
     	
     	this.saveConfig();
-    	
+        }
     	
     	log.info("Activate V0.1 has been enabled.");
     	
