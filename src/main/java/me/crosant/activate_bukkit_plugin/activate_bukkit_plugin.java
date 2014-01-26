@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class activate_bukkit_plugin extends JavaPlugin {
@@ -35,7 +36,8 @@ public class activate_bukkit_plugin extends JavaPlugin {
 
             //this.getConfig().set("Basic.Permission", "yes");
             this.getConfig().set("Activate.Group", "player");
-       // this.getConfig().set("Activate.Perm", "player.player");
+            this.getConfig().set("Activate.replaceGroup", "visitor");
+            // this.getConfig().set("Activate.Perm", "player.player");
             //  this.getConfig().set("Activate.World", "*");
             //  this.getConfig().set("Activate.Prefix", "Activated");
             this.getConfig().set("Messages.nopermission", "You don't have the required permissions to do this.");
@@ -72,48 +74,50 @@ public class activate_bukkit_plugin extends JavaPlugin {
                         String randomString = generateRandomString(allowedChars, random, length);
 
                         this.getConfig().set("Basic.string", randomString);
-                        player.sendMessage(randomString);
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',randomString));
                         this.saveConfig();
                     } else if (args[0].equalsIgnoreCase("set") && perms.has(player, "Activate_Bukkit_Plugin.refresh")) {
 
                         this.getConfig().set("Basic.string", args[1]);
-                        player.sendMessage("New String set");
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',"New String set"));
                         this.saveConfig();
                     } else if (args[0].equalsIgnoreCase("player") && perms.has(player, "Activate_Bukkit_Plugin.activate.manual")) {
 
                         String[] groups = new String[1];
                         groups[0] = this.getConfig().getString("Activate.Group");
                         perms.playerAddGroup(player, groups[0]);
+                        perms.playerRemoveGroup(player, this.getConfig().getString("Activate.replaceGroup"));
                         String user1 = args[1];
                         user = org.bukkit.Bukkit.getPlayer(user1);
-                        player.sendMessage(this.getConfig().getString(user + "has been activated"));
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',this.getConfig().getString(user + "has been activated")));
                     }
 
                     /*  else{
                
-                     player.sendMessage(this.getConfig().getString("Messages.wrong"));
+                     player.sendMessage( ChatColor.translateAlternateColorCodes('&',this.getConfig().getString("Messages.wrong"));
                 
                      }*/
                 } else if (args.length > 0) {
                     if (args[0].equalsIgnoreCase("reload") && perms.has(player, "Activate_Bukkit_Plugin.reload")) {
 
                         this.reloadConfig();
-                        player.sendMessage("Activate reloaded");
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',"Activate reloaded"));
 
                     } else if (args[0].equalsIgnoreCase(this.getConfig().getString("Basic.string")) && perms.has(player, "Activate_Bukkit_Plugin.activate")) {
 
                         String[] groups = new String[1];
                         groups[0] = this.getConfig().getString("Activate.Group");
+                        perms.playerRemoveGroup(player, this.getConfig().getString("Activate.replaceGroup"));
                         perms.playerAddGroup(player, groups[0]);
-                        player.sendMessage(this.getConfig().getString("Messages.activation"));
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',this.getConfig().getString("Messages.activation")));
                     } else {
 
-                        player.sendMessage(this.getConfig().getString("Messages.wrong"));
+                        player.sendMessage( ChatColor.translateAlternateColorCodes('&',this.getConfig().getString("Messages.wrong")));
 
                     }
 
                 } else {
-                    player.sendMessage("Check your syntax.");
+                    player.sendMessage( ChatColor.translateAlternateColorCodes('&',"Check your syntax."));
                     return false;
                 }
 
