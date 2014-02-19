@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class activate_bukkit_plugin extends JavaPlugin {
@@ -85,7 +86,9 @@ public class activate_bukkit_plugin extends JavaPlugin {
 
                         String[] groups = new String[1];
                         groups[0] = this.getConfig().getString("Activate.Group");
-                        perms.playerAddGroup(player, groups[0]);
+                        for(World world : Bukkit.getWorlds())
+                            perms.playerAddGroup(world, player.getName(), groups[0]);
+                        
                         perms.playerRemoveGroup(player, this.getConfig().getString("Activate.replaceGroup"));
                         String user1 = args[1];
                         user = org.bukkit.Bukkit.getPlayer(user1);
@@ -108,7 +111,8 @@ public class activate_bukkit_plugin extends JavaPlugin {
                         String[] groups = new String[1];
                         groups[0] = this.getConfig().getString("Activate.Group");
                         perms.playerRemoveGroup(player, this.getConfig().getString("Activate.replaceGroup"));
-                        perms.playerAddGroup(player, groups[0]);
+                        for(World world : Bukkit.getWorlds())
+                            perms.playerAddGroup(world, player.getName(), groups[0]);
                         player.sendMessage( ChatColor.translateAlternateColorCodes('&',this.getConfig().getString("Messages.activation")));
                     } else {
 
